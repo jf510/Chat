@@ -3,16 +3,23 @@ import ForumIcon from "@mui/icons-material/Forum";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
+import SidebarChat from "./SidebarChat";
 
 function Sidebar() {
+  const [seed, setSeed] = useState("");
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 5000));
+  }, []);
+
   return (
     <div className="sidebar">
       {/** Header */}
       <div className="sidebar__header">
-        <Avatar />
-        <div classname="sidebar__headerRight">
+        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+        <div className="sidebar__headerRight">
           <IconButton>
             <DonutLargeIcon className="icon" />
           </IconButton>
@@ -32,13 +39,13 @@ function Sidebar() {
         </div>
       </div>
       {/** Chat */}
-          <div className="sidebar__chats">
-              <h3>Chat</h3>
-              <h3>Chat</h3>
-              <h3>Chat</h3>
-              <h3>Chat</h3>
-              <h3>Chat</h3>
-              <h3>Chat</h3>
+      <div className="sidebar__chats">
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
       </div>
     </div>
   );
