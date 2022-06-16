@@ -9,6 +9,9 @@ function SidebarChat({ addNewChat }) {
     setSeed(Math.floor(Math.random() * 1000));
   }, []);
 
+  // When the createChat function is called, the user is prompted the create a room name
+  // This prompt input is saved in a variable named roomName.
+  // If roomName exists, meaning that, if the user entered a room name, then the room name is appended to the chat room name in the side bar
   const createChat = () => {
     const roomName = prompt("Please enter a chat room name");
 
@@ -26,6 +29,7 @@ function SidebarChat({ addNewChat }) {
       </div>
     </div>
   ) : (
+    // createChat, is called on a click
     <div onClick={createChat} className="sidebarChat">
       <h2>Add new Chat</h2>
     </div>
