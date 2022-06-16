@@ -1,0 +1,106 @@
+.chat {
+    flex: 0.65;
+    display: flex;
+    flex-direction: column;
+    background-color: #ebebeb ;
+}
+
+.chat__header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.chat__headerInfo {
+    flex: 1; /* This created a space betweent the left and right side of the header */
+    padding-left: 20px;
+}
+
+.chat__headerInfo > h3 {
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+
+.chat__headerInfo > p {
+    color: gray;
+}
+
+.chat__headerRight {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100px;
+}
+
+.chat__body {
+    flex: 1;
+    background-color: beige;
+    background-image: url("https://theabbie.github.io/blog/assets/official-whatsapp-background-image.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    padding: 30px;
+    overflow: scroll;
+}
+
+/** This is the chat bubble on the left hand side of the chat container */
+.chat__message {
+    position: relative; /* This kept the message below the name. Use with position absolute like in the below example */
+    font-size: 16px;
+    padding: 10px;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 30px;
+}
+
+/** This creates the chatt bubble on the left hand side of the chat container */
+.chat__reciever {
+    margin-left: auto; /* Pushed the green chat bubble to the right hand side. Not sure how it does that */
+    background-color: #dcf8c6; 
+}
+
+
+.chat__name {
+    position: absolute; /* The position absolute pushed the chat name above the chat message*/
+    font-size: xx-small;
+    background-color: lightgray;
+    top: -12px;
+    margin-left: -9px;
+    font-weight: 800;
+}
+
+.chat__timestamp {
+    margin-left: 10px;
+    font-size: xx-small;
+}
+
+.chat__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    border-top: 1px solid lightgray;
+}
+
+.chat__footer > .MuiSvgIcon-root {
+    padding: 10px;
+    color: gray;
+}
+
+.chat__footer > form {
+    flex: 1; /* This tells the form the take up the majority of the room inside the form*/
+    display: flex; /* This aligned the form with the emoticon */
+   
+}
+
+.chat__footer > form > input {
+    flex: 1; /* This tells the input to take up as much space a possible in the form */
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+}
+
+/* This is a little trick to keep the functionality of the button click without having to code in the event listener. User can submit by pressing enter */
+.chat__footer > form > button {
+    display: none;
+}
