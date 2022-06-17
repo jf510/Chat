@@ -6,14 +6,35 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import SidebarChat from "./SidebarChat";
+import db from "./firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function Sidebar() {
   const [seed, setSeed] = useState("");
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, []);
 
+  const getRooms = () => {
+    const roomsCollectionRef = collection(db, "Rooms");
+    getDocs(roomsCollectionRef)
+      .then((response) => {
+        console.log(response.docs);
+        setRooms(
+          response.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  useEffect(() => {
+    getRooms();
+  }, []);
   return (
     <div className="sidebar">
       {/** Header */}
@@ -41,11 +62,9 @@ function Sidebar() {
       {/** Chat */}
       <div className="sidebar__chats">
         <SidebarChat addNewChat />
-        <SidebarChat />
-        <SidebarChat />
-        <SidebarChat />
-        <SidebarChat />
-        <SidebarChat />
+        {rooms.map((room) => (
+          <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+        ))}
       </div>
     </div>
   );
